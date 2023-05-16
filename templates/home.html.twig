@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Nos produits phares</h1>
+    <div class="row">
+        {%  for produit in produits %}
+            <div class="col-4">
+                <div class="card">
+                    <img src="{{ produit.mainPicture }}" alt="Text alt" class="img-fluid">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ produit.name }}</h4>
+                        <p class="card-text">{{ produit.description }}</p>
+                        <a href="#" class="btn btn-primary btn-sm">Détail</a>
+                        <a href="#" class="btn btn-success btn-sm">Ajouter</a>
+                        <p class="card-text">{{  produit.price / 100}} €</p>
+                        <span class="badge bg-info badge-info" >{{ produit.category.name }}</span>
+                    </div>
+                </div>
+            </div>
+        {%  endfor %}
+    </div>
+    <hr>
+    <h2>Un service irreprochable</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat hic ipsam perspiciatis tenetur? Aspernatur dolorem expedita nostrum obcaecati officiis perferendis quisquam sint. Animi beatae debitis ea nisi odit officia soluta?</p>
+    <div class="row">
+        {% include 'shared/_assurrance.html.twig'  with {
+            'color': 'primary',
+            'icone': 'fas fa-truck',
+            'text': "lorem ipsum ipsul kirel lorem ipsim ipsmi lorem mlorem zl eif ei ozeof oizef oi ze"
+        }%}
+        {% include 'shared/_assurrance.html.twig'  with {
+            'color': 'success',
+            'icone': 'fas fa-check',
+            'text': "lorem ipsum ipsul kirel lorem ipsim ipsmi lorem mlorem zl eif ei ozeof oizef oi ze"
+        }%}
+        {% include 'shared/_assurrance.html.twig'  with {
+            'color': 'warning',
+            'icone': 'fas fa-lock',
+            'text': "lorem ipsum ipsul kirel lorem ipsim ipsmi lorem mlorem zl eif ei ozeof oizef oi ze"
+        }%}
+    </div>
+{% endblock %}
+
+{% block title %}Accueil {% endblock %}
+
