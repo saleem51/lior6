@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,6 +71,11 @@ class ProductController extends AbstractController
 
             $entityManager->persist($product);
             $entityManager->flush();
+
+            return $this->redirectToRoute('product_show', [
+                'category_slug' => $product->getCategory()->getSlug(),
+                'slug' => $product->getSlug(),
+            ]);
         }
         $formView = $form->createView();
 
@@ -82,11 +88,10 @@ class ProductController extends AbstractController
     public function edit(int $id,
                          ProductRepository $productRepository,
                          Request $request,
-                         EntityManagerInterface $entityManager,
-                         UrlGeneratorInterface $urlGenerator,
+                         EntityManagerInterface $entityManager
     )
     {
-        $product = $productRepository->find($id);
+        $product = $productRepository->find($id);/**/
 
         $form = $this->createForm(ProductType::class, $product);
 
@@ -97,15 +102,11 @@ class ProductController extends AbstractController
         if($form->isSubmitted()){
             $entityManager->flush();
 
-            $response = new Response();
-            $url = $urlGenerator->generate('product_show', [
+            return $this->redirectToRoute('product_show', [
                 'category_slug' => $product->getCategory()->getSlug(),
                 'slug' => $product->getSlug(),
             ]);
 
-            $response->headers->set('Location', $url);
-            $response->setStatusCode(302);
-           //return $this->redirectToRoute('homepage');
         }
 
         $formView = $form->createView();
