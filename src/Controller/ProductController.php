@@ -22,10 +22,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasySlugger\Slugger;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProductController extends AbstractController
 {
-    #[Route('/{slug}', name: 'product_category')]
+    #[Route('/{slug}', name: 'product_category', priority: -2)]
     public function category($slug, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository-> findOneBy([
@@ -66,7 +72,7 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $product->setSlug(strtolower($slugger->slugify($product->getName())));
 
             $entityManager->persist($product);
@@ -85,13 +91,9 @@ class ProductController extends AbstractController
     }
 
     #[Route('/admin/product/{id}/edit', name: 'product_edit')]
-    public function edit(int $id,
-                         ProductRepository $productRepository,
-                         Request $request,
-                         EntityManagerInterface $entityManager
-    )
+    public function edit(int $id,ProductRepository $productRepository,Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator)
     {
-        $product = $productRepository->find($id);/**/
+        $product = $productRepository->find($id);
 
         $form = $this->createForm(ProductType::class, $product);
 
@@ -118,3 +120,54 @@ class ProductController extends AbstractController
 
     }
 }
+
+
+
+                                /********************************* test du validator *************************************************/
+
+/*$client = [
+    'nom' => 'Kobzili',
+    'prenom' => 'Salim',
+    'voiture' => [
+        'marque' => 'Hyundai',
+        'couleur' => 'verte'
+    ]
+];
+
+$collection = new Collection([
+    'nom' => new NotBlank(['message' => "Le nom ne doit pas être vide !"]),
+    'prenom' => [
+        new NotBlank(['message' => "Le prénom ne doit pas être vide"]),
+        new Length(["min" => 3, "minMessage" => "Le prénom de doit pas faire moins de 34 caractères"])
+    ],
+    'voiture' => new Collection([
+        "marque" => new NotBlank(["message" => 'La marque de la voiture est obligatoire']),
+        "couleur" => new NotBlank(["message" => "La couleur de la voiture est obligatoire"])
+    ])
+]);
+
+/*       $produit = new Product();
+
+      $produit->setName('Salim');
+       $produit->setPrice(100);
+
+        $resultat = $validator->validate($produit);
+
+        if($resultat->count() > 0) {
+            dd("Il y a des erreurs", $resultat);
+        }
+        dd("Tout va bien");
+
+$age = 200;
+
+$resultat = $validator->validate($client, $collection);
+/*        $age, [
+        new LessThanOrEqual([
+            'value' => 0,
+            'message' => "L'âge doit être inférieur à {{compared_value}} mais vous avez donné {{value}}))"
+        ]),
+        new GreaterThan([
+            'value' => 0,
+            'message' => "L'âge doit être supérieur à 0"
+        ])
+    ]*/

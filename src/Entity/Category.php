@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -15,6 +16,8 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Le nom de la catégorie est obligatoire !")]
+    #[Assert\Length(min: 3, max: 255, minMessage: "La catégorie doit faire au moins 3 caractères")]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -23,6 +26,9 @@ class Category
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class, orphanRemoval: true)]
     private Collection $products;
+
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    private ?User $owner = null;
 
     public function __construct()
     {
@@ -91,5 +97,17 @@ class Category
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
     }
 }

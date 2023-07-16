@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b75451cb4e8e0a4056715f2e113e0778",
+    "content-hash": "ab46bc28b0b6c345973d612dfea9bd59",
     "packages": [
+        {
+            "name": "bluemmb/faker-picsum-photos-provider",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bluemmb/Faker-PicsumPhotos.git",
+                "reference": "ba51696f7f2e8ad1e7d45703ad845304b6e66a2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bluemmb/Faker-PicsumPhotos/zipball/ba51696f7f2e8ad1e7d45703ad845304b6e66a2d",
+                "reference": "ba51696f7f2e8ad1e7d45703ad845304b6e66a2d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "fakerphp/faker": "^1.10",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bluemmb\\Faker\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohammad Eftekhari",
+                    "email": "bluemmb22@gmail.com"
+                }
+            ],
+            "description": "picsum.photos provider for Faker",
+            "keywords": [
+                "faker",
+                "picsum.photos",
+                "provider"
+            ],
+            "support": {
+                "issues": "https://github.com/bluemmb/Faker-PicsumPhotos/issues",
+                "source": "https://github.com/bluemmb/Faker-PicsumPhotos/tree/v2.0"
+            },
+            "time": "2021-02-02T13:59:04+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "2.0.1",
@@ -1559,6 +1609,104 @@
                 "source": "https://github.com/javiereguiluz/EasySlugger/tree/v1.0.0"
             },
             "time": "2015-04-12T19:57:10+00:00"
+        },
+        {
+            "name": "liorchamla/faker-prices",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liorchamla/faker-prices.git",
+                "reference": "01f44c6aad653bf72f90c1345d48a798ec3f9d19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liorchamla/faker-prices/zipball/01f44c6aad653bf72f90c1345d48a798ec3f9d19",
+                "reference": "01f44c6aad653bf72f90c1345d48a798ec3f9d19",
+                "shasum": ""
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.13",
+                "pestphp/pest": "^0.3.19",
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Liior\\Faker\\": "src/Faker"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lior Chamla",
+                    "email": "contact@web-develop.me"
+                }
+            ],
+            "description": "Provides typical and credible prices for Faker (fzaninotto/faker or fakerphp/faker) library",
+            "keywords": [
+                "faker",
+                "fixtures",
+                "prices"
+            ],
+            "support": {
+                "issues": "https://github.com/liorchamla/faker-prices/issues",
+                "source": "https://github.com/liorchamla/faker-prices/tree/2.0.0"
+            },
+            "time": "2020-12-29T08:40:08+00:00"
+        },
+        {
+            "name": "mbezhanov/faker-provider-collection",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mbezhanov/faker-provider-collection.git",
+                "reference": "ae3a9ba9421c3a593836689f08da1443b4065bc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mbezhanov/faker-provider-collection/zipball/ae3a9ba9421c3a593836689f08da1443b4065bc0",
+                "reference": "ae3a9ba9421c3a593836689f08da1443b4065bc0",
+                "shasum": ""
+            },
+            "require": {
+                "fakerphp/faker": "^1.13",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "php-mock/php-mock": "^2.3",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bezhanov\\Faker\\": "src/Faker"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marin Bezhanov",
+                    "email": "marin.bezhanov@gmail.com",
+                    "homepage": "http://marinbezhanov.com"
+                }
+            ],
+            "description": "A collection of custom providers for the Faker library",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "support": {
+                "issues": "https://github.com/mbezhanov/faker-provider-collection/issues",
+                "source": "https://github.com/mbezhanov/faker-provider-collection/tree/2.0.1"
+            },
+            "time": "2021-03-12T06:57:05+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5598,16 +5746,16 @@
         },
         {
             "name": "symfony/security-bundle",
-            "version": "v6.2.10",
+            "version": "v6.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-bundle.git",
-                "reference": "b12dcedbcf423ae6d34d79cfaa6791a21c90bd14"
+                "reference": "43faa9bc3c7ee7e97ffa53320947a074971d159b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/b12dcedbcf423ae6d34d79cfaa6791a21c90bd14",
-                "reference": "b12dcedbcf423ae6d34d79cfaa6791a21c90bd14",
+                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/43faa9bc3c7ee7e97ffa53320947a074971d159b",
+                "reference": "43faa9bc3c7ee7e97ffa53320947a074971d159b",
                 "shasum": ""
             },
             "require": {
@@ -5678,7 +5826,7 @@
             "description": "Provides a tight integration of the Security component into the Symfony full-stack framework",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/security-bundle/tree/v6.2.10"
+                "source": "https://github.com/symfony/security-bundle/tree/v6.2.11"
             },
             "funding": [
                 {
@@ -5694,7 +5842,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-21T15:49:06+00:00"
+            "time": "2023-05-26T15:38:40+00:00"
         },
         {
             "name": "symfony/security-core",
@@ -6667,16 +6815,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v6.2.10",
+            "version": "v6.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "c02ea86844926f04247bc1f5db5f85bb53330823"
+                "reference": "14998e41b1e65e15cbe23466e5a5c2edd8ad3584"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/c02ea86844926f04247bc1f5db5f85bb53330823",
-                "reference": "c02ea86844926f04247bc1f5db5f85bb53330823",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/14998e41b1e65e15cbe23466e5a5c2edd8ad3584",
+                "reference": "14998e41b1e65e15cbe23466e5a5c2edd8ad3584",
                 "shasum": ""
             },
             "require": {
@@ -6689,7 +6837,6 @@
             "conflict": {
                 "doctrine/annotations": "<1.13",
                 "doctrine/lexer": "<1.1",
-                "phpunit/phpunit": "<5.4.3",
                 "symfony/dependency-injection": "<5.4",
                 "symfony/expression-language": "<5.4",
                 "symfony/http-kernel": "<5.4",
@@ -6755,7 +6902,7 @@
             "description": "Provides tools to validate values",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/validator/tree/v6.2.10"
+                "source": "https://github.com/symfony/validator/tree/v6.2.11"
             },
             "funding": [
                 {
@@ -6771,7 +6918,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-19T09:54:16+00:00"
+            "time": "2023-05-25T13:08:43+00:00"
         },
         {
             "name": "symfony/var-dumper",

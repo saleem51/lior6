@@ -131,6 +131,9 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/javiereguiluz/easyslugger" />
+      <path value="$PROJECT_DIR$/vendor/mbezhanov/faker-provider-collection" />
+      <path value="$PROJECT_DIR$/vendor/bluemmb/faker-picsum-photos-provider" />
+      <path value="$PROJECT_DIR$/vendor/liorchamla/faker-prices" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

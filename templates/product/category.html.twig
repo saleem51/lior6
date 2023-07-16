@@ -5,17 +5,7 @@
     <div class="row">
         {% for produit in category.products %}
             <div class="col-3">
-                <div class="card">
-                    <img src="{{ produit.mainPicture }}" alt="Text alt" class="img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ produit.name }}</h4>
-                        <p class="card-text">{{ produit.description }}</p>
-                        <a href="#" class="btn btn-primary btn-sm">Détail</a>
-                        <a href="#" class="btn btn-success btn-sm">Ajouter</a>
-                        <p class="card-text">{{  produit.price / 100}} €</p>
-                        <span class="badge bg-info badge-info" >{{ produit.category.name }}</span>
-                    </div>
-                </div>
+              {{ include('product/_product_card.html.twig') }}
             </div>
         {% endfor %}
     </div>

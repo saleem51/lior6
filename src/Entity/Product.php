@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -15,9 +18,12 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Le nom du produit est obligatoire !")]
+    #[Assert\Length(min:3, max: 255, minMessage: "Le nom du produit doit avoir au moins 3 caractères ! ")]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le produit doit avoir au moins un prix avec les annotations")]
     private ?int $price = null;
 
     #[ORM\Column(length: 255)]
@@ -33,6 +39,15 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+ /*   public static function loadValidatorMetaData(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraints('name' , [
+           new NotBlank(["message" => 'Le nom du produit est obligatoire']),
+            new Length(['min' => 3, 'max' => 255, 'minMessage' => 'Le nom du produit doit contenir au moins 3 caractères'])
+        ]);
+
+        $metadata->addPropertyConstraint('price', new NotBlank(['message' => 'Le prix du produit est obligatoire']));
+    }*/
     public function getId(): ?int
     {
         return $this->id;
@@ -79,7 +94,7 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -91,7 +106,7 @@ class Product
         return $this->mainPicture;
     }
 
-    public function setMainPicture(string $mainPicture): self
+    public function setMainPicture(?string $mainPicture): self
     {
         $this->mainPicture = $mainPicture;
 
