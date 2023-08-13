@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Purchase;
+use App\Entity\PurchaseItem;
 use App\Entity\User;
 use Bezhanov\Faker\Provider\Commerce;
 use Bluemmb\Faker\PicsumPhotosProvider;
@@ -61,6 +62,8 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
+        $products = [];
+
         for($c = 0; $c < 3; $c++)
         {
             $category = new Category();
@@ -78,6 +81,8 @@ class AppFixtures extends Fixture
                     ->setCategory($category)
                     ->setMainPicture($faker->imageUrl(200,200,true));
 
+                $products[] = $product;
+
                 $manager->persist($product);
             }
         }
@@ -90,8 +95,29 @@ class AppFixtures extends Fixture
                      ->setPostalCode($faker->postcode)
                      ->setCity($faker->city)
                      ->setUser($faker->randomElement($users))
-                     ->setTotal(mt_rand(20000, 30000));
+                     ->setTotal(mt_rand(20000, 30000))
+                     ->setPurchasedAt($faker->dateTimeBetween('- 6 month', 'now'));
 
+                $selectedProducts = $faker->randomElements($products, mt_rand(3,5));
+
+            /**
+             * @var Product $product
+             */
+            foreach ($selectedProducts as $product)
+            {
+                $purchaseItem = new PurchaseItem();
+                $purchaseItem->setProduct($product)
+                    ->setQuantity(mt_rand(1,3))
+                    ->setProductName($product->getName())
+                    ->setProductPrice($product->getPrice())
+                    ->setTotal(
+                        $purchaseItem->getProductPrice() * $purchaseItem->getQuantity()
+                    )
+                    ->setPurchase($purchase);
+
+                $manager->persist($purchaseItem);
+
+            }
 
                 if($faker->boolean(90)){
                     $purchase->setStatus(Purchase::STATUS_PAID);
